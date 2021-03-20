@@ -5,4 +5,10 @@
   background-color: transparent;
   border: none;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.button__like:hover {
+  transition: opacity 0.5s ease;
+  opacity: 0.5;
 }

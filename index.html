@@ -8,8 +8,10 @@
 </head>
 <body class = "page">
   <div class="page__container">
-    <header class="header section section_scale_l">
-      <img src="./images/log.svg" alt="Логотип" class="header__logo">
+    <header class="header section section_scale_m">
+      <a class="header__link">
+        <img src="./images/log.svg" alt="Логотип" class="header__logo">
+      </a>
     </header>
 
     <main class="content">
@@ -20,7 +22,7 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="button__edit">
+          <button class="button__edit" id="popup_open-btn">
             <img src="./images/edit.svg" alt="Редактировать профиль" class="profile__edit">
           </button>
         </div>
@@ -84,7 +86,7 @@
           <li class="card__item">
             <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
             <div class="card__caption">
-              <h2 class="card__title">Карачаевск</h2>
+              <h2 class="card__title">Карачаево-Черкессия</h2>
               <button class="button__like">
                 <img src="./images/like.svg" alt="Like" class="card__like">
               </button>
@@ -92,6 +94,19 @@
           </li>
         </ul>
       </section>
+
+      <div class="popup">
+        <div class="popup__overlay"></div>
+        <div class="popup__content">
+          <div class="popup__close-btn">+</div>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form">
+            <input type="text" class="popup__input popup__name">
+            <input type="text" class="popup__input popup__profession">
+            <button class="popup__save">Сохранить</button>
+          </form>
+        </div>
+      </div>
     </main>
 
     <footer class="footer section_scale_l">

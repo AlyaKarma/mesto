@@ -3,3 +3,11 @@
  display: block;
  box-sizing: border-box;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__edit {
+    width: 18px;
+    height: 18px;
+    padding: 5px;
+  }
+}

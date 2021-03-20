@@ -1,22 +1,22 @@
-.section_scale_l {
+.section_scale_m {
   max-width: calc(1280px - 200px * 2);
   margin: 0 auto;
 }
 
 @media screen and (max-width: 1279px) {
-  .section_scale_l {
+  .section_scale_m {
     max-width: calc(1024px - 70px *2);
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .section_scale_l {
+  .section_scale_m {
     max-width: calc(768px - 50px * 2);
   }
 }
 
 @media screen and (max-width: 767px) {
-  .section_scale_l {
-    max-width: 88%;
+  .section_scale_m {
+    max-width: 100%;
   }
 }
