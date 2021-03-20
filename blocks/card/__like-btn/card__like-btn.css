@@ -1,4 +1,4 @@
-.button__like {
+.card__like-btn {
   padding: 0;
   font: inherit;
   color: inherit;
@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 
-.button__like:hover {
+.card__like-btn:hover {
   transition: opacity 0.5s ease;
   opacity: 0.5;
 }
