@@ -11,3 +11,8 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 767px) {
+  .popup__input {
+    margin: 0 0 18px;
+  }
+}

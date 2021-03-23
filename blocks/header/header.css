@@ -1,9 +1,11 @@
 .header {
   align-items: center;
-  border-bottom: 1px solid #615f5f;
+  border-bottom: 1px solid rgba(85, 83, 83, .7);
   box-sizing: border-box;
   display: flex;
   margin: 45px auto 0;
+  max-width: 880px;
+  max-height: 77px;
 }
 
 @media screen and (max-width: 767px) {

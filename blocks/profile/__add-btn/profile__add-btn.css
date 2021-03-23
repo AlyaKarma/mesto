@@ -1,10 +1,11 @@
 .profile__add-btn {
   padding: 0;
+  margin: 34px 0 0;
   font: inherit;
   color: inherit;
   background-color: transparent;
   border: 2px solid #FFFFFF;
-  border-radius: 2%;
+  border-radius: 2px;
   box-sizing: border-box;
   max-width: 150px;
   max-height: 50px;
@@ -13,5 +14,5 @@
 
 .profile__add-btn:hover {
   transition: opacity 0.5s ease;
-  opacity: 0.5;
+  opacity: 0.6;
 }
