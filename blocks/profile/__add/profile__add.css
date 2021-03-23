@@ -3,3 +3,10 @@
   box-sizing: border-box;
   padding: 14px 64px;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__add {
+    padding: 0 128px 0 130px;
+    height: 16px;
+  }
+}
