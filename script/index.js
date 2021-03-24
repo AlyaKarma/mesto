@@ -5,7 +5,7 @@ let popupName = document.querySelector('.popup__input_type_name');
 let popupProfession = document.querySelector('.popup__input_type_profession')
 let nameProfile = document.querySelector('.profile__name');
 let professionProfile = document.querySelector('.profile__profession');
-let popupForm =document.querySelector('.popup__form');
+let popupForm = document.querySelector('.popup__form');
 
 function openPopup() {
   popup.classList.add('popup_visible');
