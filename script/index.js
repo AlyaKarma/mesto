@@ -5,7 +5,7 @@ let popupName = document.querySelector('.popup__input_type_name');
 let popupProfession = document.querySelector('.popup__input_type_profession')
 let nameProfile = document.querySelector('.profile__name');
 let professionProfile = document.querySelector('.profile__profession');
-let popupSave =document.querySelector('.popup__save');
+let popupForm =document.querySelector('.popup__form');
 
 function openPopup() {
   popup.classList.add('popup_visible');
@@ -22,7 +22,7 @@ function formSubmitHandler(evt) {
   closePopup();
 }
 
-popupSave.addEventListener('click', formSubmitHandler);
+popupForm.addEventListener('submit', formSubmitHandler);
 
 popupOpenBtn.addEventListener('click', function() {
   popupName.value = nameProfile.textContent;
