@@ -26,79 +26,85 @@
             <img src="./images/edit.svg" alt="Редактировать профиль" class="profile__edit">
           </button>
         </div>
-        <button class="profile__add-btn" type="button">
+        <button class="profile__add-btn profile__open-add" type="button">
           <img src="./images/add.svg" alt="Добавить фото" class="profile__add">
         </button>
       </section>
 
       <section class="card section section_scale_l">
         <ul class="card__list">
-          <li class="card__item">
-            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Карачаевск</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
-
-          <li class="card__item">
-            <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
-
-          <li class="card__item">
-            <img src="./images/dombay.jpg" alt="Домбай" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
-
-          <li class="card__item">
-            <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
-
-          <li class="card__item">
-            <img src="./images/dombay.jpg" alt="Домбай" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
-
-          <li class="card__item">
-            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
-            <div class="card__caption">
-              <h2 class="card__title">Карачаево-Черкессия</h2>
-              <button class="card__like-btn" type="button">
-                <img src="./images/like.svg" alt="Like" class="card__like">
-              </button>
-            </div>
-          </li>
         </ul>
+        <template class="card__template">
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <button class="card__delete">
+              <img src="./images/delete.svg" alt="Удалить">
+            </button>
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+
+          <li class="card__item">
+            <img src="" alt="" class="card__image">
+            <div class="card__caption">
+              <h2 class="card__title"></h2>
+              <button class="card__like-btn" type="button">
+                <img src="./images/like.svg" alt="Like" class="card__like">
+              </button>
+            </div>
+          </li>
+        </template>
       </section>
     </main>
 
     <footer class="footer  section section_scale_l">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
+
     <div class="popup section section_scale_l">
       <div class="popup__content">
         <button class="popup__close-btn" type="button">
@@ -112,6 +118,21 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_type_add section section_scale_l">
+      <div class="popup__content">
+        <button class="popup__close-btn popup__close-btn_type_add" type="button">
+          <img src="./images/close__icon.svg" alt="Закрыть" class="popup__close">
+        </button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form_type_add" name="form">
+          <input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название">
+          <input type="text" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку">
+          <button class="popup__save" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
   </div>
   <script src="./script/index.js"></script>
 </body>
