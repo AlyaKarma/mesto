@@ -1,17 +1,24 @@
 const popup = document.querySelector('.popup');
 const popupAdd = document.querySelector('.popup_type_add');
+const popupImg = document.querySelector('.popup_type_img');
+
 const popupOpenBtn = document.querySelector('.profile__open-btn');
 const popupOpenAdd = document.querySelector('.profile__open-add');
+
 const popupCloseBtn = document.querySelector('.popup__close-btn');
 const popupCloseAdd = document.querySelector('.popup__close-btn_type_add')
+const popupCloseImg = document.querySelector('.popup__close-btn_type_img');
+
 const popupName = document.querySelector('.popup__input_type_name');
 const popupProfession = document.querySelector('.popup__input_type_profession')
 const popupTitle = document.querySelector('.popup__input_type_title');
 const popupLink = document.querySelector('.popup__input_type_link');
 const nameProfile = document.querySelector('.profile__name');
 const professionProfile = document.querySelector('.profile__profession');
+
 const popupForm = document.querySelector('.popup__form');
 const popupFormAdd = document.querySelector('.popup__form_type_add');
+
 const cardList = document.querySelector('.card__list');
 const cardTemplate = document.querySelector('.card__template').content.querySelector('.card__item');
 
@@ -42,21 +49,13 @@ const initialCards = [
   }
 ];
 
-const openPopup = () => {
-  popup.classList.add('popup_visible');
-}
+const reverseCard = initialCards.reverse();
 
-const closePopup = () => {
-  popup.classList.remove('popup_visible');
-}
+const popupImgPic = popupImg.querySelector('.popup__img');
+const popupImgTxt = popupImg.querySelector('.popup__caption');
 
-const openPopupAdd = () => {
-  popupAdd.classList.add('popup_visible');
-}
+const togglePopupVisible = (modal) =>  modal.classList.toggle('popup_visible');
 
-const closePopupAdd = () => {
-  popupAdd.classList.remove('popup_visible');
-}
 
 const insertCardItem = (item) => {
   const listItem = cardTemplate.cloneNode(true);
@@ -70,12 +69,20 @@ const insertCardItem = (item) => {
   cardDelete.addEventListener('click', () => listItem.remove());
 
   const cardLike = listItem.querySelector('.card__like-btn');
-  cardLike.addEventListener('click', () => {
-    cardLike.classList.add('.card__like-btn_active');
+  cardLike.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('card__like-btn_active');
   });
+
+  const imgClickHandler = (evt) => {
+    popupImgPic.src = item.link;
+    popupImgTxt.textContent = item.name;
+    togglePopupVisible(popupImg);
+  }
+
+  cardImage.addEventListener('click', imgClickHandler);
 }
 
-const cards = initialCards.forEach(item => {
+const cards = reverseCard.forEach(item => {
   insertCardItem(item);
 });
 
@@ -84,7 +91,7 @@ const formSubmitHandlerAdd = (evt) => {
   evt.preventDefault();
   const item = {name: popupTitle.value, link: popupLink.value};
   insertCardItem(item);
-  closePopupAdd();
+  togglePopupVisible(popupAdd);
 }
 
 
@@ -92,7 +99,7 @@ const formSubmitHandler = evt => {
   evt.preventDefault();
   nameProfile.textContent = popupName.value;
   professionProfile.textContent = popupProfession.value;
-  closePopup();
+  togglePopupVisible(popup);
 }
 
 
@@ -103,14 +110,16 @@ popupFormAdd.addEventListener('submit', formSubmitHandlerAdd);
 popupOpenBtn.addEventListener('click', function() {
   popupName.value = nameProfile.textContent;
   popupProfession.value = professionProfile.textContent;
-  openPopup();
+  togglePopupVisible(popup);
 })
-
-popupCloseBtn.addEventListener('click', closePopup);
 
 
 popupOpenAdd.addEventListener('click', function() {
-  openPopupAdd();
+  togglePopupVisible(popupAdd);
 })
 
-popupCloseAdd.addEventListener('click', closePopupAdd);
+popupCloseBtn.addEventListener('click', () => togglePopupVisible(popup));
+
+popupCloseAdd.addEventListener('click', () => togglePopupVisible(popupAdd));
+
+popupCloseImg.addEventListener('click', () => togglePopupVisible(popupImg));
