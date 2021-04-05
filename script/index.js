@@ -1,11 +1,12 @@
 const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_type_profile');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImg = document.querySelector('.popup_type_img');
 
-const popupOpenBtn = document.querySelector('.profile__open-btn');
+const popupOpenProfile = document.querySelector('.profile__open-btn');
 const popupOpenAdd = document.querySelector('.profile__open-add');
 
-const popupCloseBtn = document.querySelector('.popup__close-btn');
+const popupCloseProfile = document.querySelector('.popup__close-btn_type_profile');
 const popupCloseAdd = document.querySelector('.popup__close-btn_type_add')
 const popupCloseImg = document.querySelector('.popup__close-btn_type_img');
 
@@ -16,7 +17,7 @@ const popupLink = document.querySelector('.popup__input_type_link');
 const nameProfile = document.querySelector('.profile__name');
 const professionProfile = document.querySelector('.profile__profession');
 
-const popupForm = document.querySelector('.popup__form');
+const popupFormProfile = document.querySelector('.popup__form_type_profile');
 const popupFormAdd = document.querySelector('.popup__form_type_add');
 
 const cardList = document.querySelector('.card__list');
@@ -58,14 +59,18 @@ const togglePopupVisible = (modal) =>  modal.classList.toggle('popup_visible');
 
 
 const insertCardItem = (item) => {
-  const listItem = cardTemplate.cloneNode(true);
+  const listItem = createCard(item);
   const cardImage = listItem.querySelector('.card__image');
   const cardTitle = listItem.querySelector('.card__title');
   cardImage.src = item.link;
+  cardImage.alt = 'Изображение';
   cardTitle.textContent = item.name;
   cardList.prepend(listItem);
+}
 
-  const cardDelete = listItem.querySelector('.card__delete');
+function createCard(item) {
+  const listItem = cardTemplate.cloneNode(true); //создается DOM элемент карточки
+  const cardDelete = listItem.querySelector('.card__delete'); //в карточку вставляются данные и навешиваются обработчики
   cardDelete.addEventListener('click', () => listItem.remove());
 
   const cardLike = listItem.querySelector('.card__like-btn');
@@ -75,42 +80,46 @@ const insertCardItem = (item) => {
 
   const imgClickHandler = (evt) => {
     popupImgPic.src = item.link;
+    popupImgPic.alt = 'Изображение';
     popupImgTxt.textContent = item.name;
     togglePopupVisible(popupImg);
   }
 
+  const cardImage = listItem.querySelector('.card__image');
   cardImage.addEventListener('click', imgClickHandler);
+  return listItem; //возвращается созданная карточка
 }
 
-const cards = reverseCard.forEach(item => {
+reverseCard.forEach(item => {
   insertCardItem(item);
 });
 
 
-const formSubmitHandlerAdd = (evt) => {
+const handleCardSubmit = (evt) => {
   evt.preventDefault();
   const item = {name: popupTitle.value, link: popupLink.value};
   insertCardItem(item);
   togglePopupVisible(popupAdd);
+  popupFormAdd.reset();
 }
 
 
-const formSubmitHandler = evt => {
+const handleProfileSubmit = evt => {
   evt.preventDefault();
   nameProfile.textContent = popupName.value;
   professionProfile.textContent = popupProfession.value;
-  togglePopupVisible(popup);
+  togglePopupVisible(popupProfile);
 }
 
 
-popupForm.addEventListener('submit', formSubmitHandler);
-popupFormAdd.addEventListener('submit', formSubmitHandlerAdd);
+popupFormProfile.addEventListener('submit', handleProfileSubmit);
+popupFormAdd.addEventListener('submit', handleCardSubmit);
 
 
-popupOpenBtn.addEventListener('click', function() {
+popupOpenProfile.addEventListener('click', function() {
   popupName.value = nameProfile.textContent;
   popupProfession.value = professionProfile.textContent;
-  togglePopupVisible(popup);
+  togglePopupVisible(popupProfile);
 })
 
 
@@ -118,7 +127,7 @@ popupOpenAdd.addEventListener('click', function() {
   togglePopupVisible(popupAdd);
 })
 
-popupCloseBtn.addEventListener('click', () => togglePopupVisible(popup));
+popupCloseProfile.addEventListener('click', () => togglePopupVisible(popupProfile));
 
 popupCloseAdd.addEventListener('click', () => togglePopupVisible(popupAdd));
 
