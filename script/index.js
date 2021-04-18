@@ -111,24 +111,49 @@ const handleProfileSubmit = evt => {
   togglePopupVisible(popupProfile);
 }
 
+const handleEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_visible');
+    togglePopupVisible(activePopup);
+  }
+}
 
 popupFormProfile.addEventListener('submit', handleProfileSubmit);
 popupFormAdd.addEventListener('submit', handleCardSubmit);
-
 
 popupOpenProfile.addEventListener('click', function() {
   popupName.value = nameProfile.textContent;
   popupProfession.value = professionProfile.textContent;
   togglePopupVisible(popupProfile);
-})
+  document.addEventListener('keyup', handleEsc);
 
+})
 
 popupOpenAdd.addEventListener('click', function() {
   togglePopupVisible(popupAdd);
+  document.addEventListener('keyup', handleEsc);
 })
 
-popupCloseProfile.addEventListener('click', () => togglePopupVisible(popupProfile));
+popupCloseProfile.addEventListener('click', () => {
+  togglePopupVisible(popupProfile);
+  document.removeEventListener('keyup', handleEsc);
+});
 
-popupCloseAdd.addEventListener('click', () => togglePopupVisible(popupAdd));
+popupProfile.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup')) {
+    togglePopupVisible(popupProfile);
+  }
+});
+
+popupCloseAdd.addEventListener('click', () => {
+  togglePopupVisible(popupAdd);
+  document.removeEventListener('keyup', handleEsc);
+});
+
+popupAdd.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup')) {
+    togglePopupVisible(popupAdd);
+  }
+});
 
 popupCloseImg.addEventListener('click', () => togglePopupVisible(popupImg));
