@@ -54,7 +54,9 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_type_profile section section_scale_l">
+  </div>
+
+    <div class="popup popup_type_profile">
       <div class="popup__content">
         <button class="popup__close-btn popup__close-btn_type_profile" type="button">
           <img src="./images/close__icon.svg" alt="Закрыть" class="popup__close">
@@ -65,12 +67,12 @@
           <span class="popup__input-error popup__input-error_name" id="sign-name-error"></span>
           <input type="text" class="popup__input popup__input_type_profession" id="sign-profession" name="profession" placeholder="Обо мне" required minlength="2" maxlength="200">
           <span class="popup__input-error popup__input-error_profession" id="sign-profession-error"></span>
-          <button class="popup__save" type="submit">Сохранить</button>
+          <button class="popup__save" type="submit" id="saveInfo">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_type_add section section_scale_l">
+    <div class="popup popup_type_add">
       <div class="popup__content">
         <button class="popup__close-btn popup__close-btn_type_add" type="button">
           <img src="./images/close__icon.svg" alt="Закрыть" class="popup__close">
@@ -81,12 +83,12 @@
           <span class="popup__input-error popup__input-error_title" id="sign-title-error"></span>
           <input type="url" class="popup__input popup__input_type_link" id="sign-link" name="link" placeholder="Ссылка на картинку" required>
           <span class="popup__input-error popup__input-error_link" id="sign-link-error"></span>
-          <button class="popup__save popup__save_disabled" type="submit" disabled>Создать</button>
+          <button class="popup__save popup__save_disabled" type="submit" id="saveCard" disabled>Создать</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_type_img section section_scale_l">
+    <div class="popup popup_type_img">
       <div class="popup__content-img">
         <button class="popup__close-btn popup__close-btn_type_img" type="button">
         </button>
@@ -97,8 +99,9 @@
       </div>
     </div>
 
-  </div>
+
   <script src="./script/index.js"></script>
+  <script src="./script/initialCards.js"></script>
   <script src="./script/validity.js"></script>
 </body>
 </html>

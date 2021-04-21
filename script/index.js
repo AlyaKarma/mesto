@@ -1,4 +1,3 @@
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImg = document.querySelector('.popup_type_img');
@@ -9,6 +8,11 @@ const popupOpenAdd = document.querySelector('.profile__open-add');
 const popupCloseProfile = document.querySelector('.popup__close-btn_type_profile');
 const popupCloseAdd = document.querySelector('.popup__close-btn_type_add')
 const popupCloseImg = document.querySelector('.popup__close-btn_type_img');
+
+const popupInput = document.querySelector('.popup__input');
+const popupSaveInfo = document.querySelector('#saveInfo');
+const popupSaveCard = document.querySelector('#saveCard');
+const popupSaveDisabled = document.querySelector('.popup__save_disabled');
 
 const popupName = document.querySelector('.popup__input_type_name');
 const popupProfession = document.querySelector('.popup__input_type_profession')
@@ -23,49 +27,54 @@ const popupFormAdd = document.querySelector('.popup__form_type_add');
 const cardList = document.querySelector('.card__list');
 const cardTemplate = document.querySelector('.card__template').content.querySelector('.card__item');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-const reverseCard = initialCards.reverse();
+
 
 const popupImgPic = popupImg.querySelector('.popup__img');
 const popupImgTxt = popupImg.querySelector('.popup__caption');
 
-const togglePopupVisible = (modal) =>  modal.classList.toggle('popup_visible');
 
+
+const openPopupProfile = (popup) => {
+  popup.classList.add('popup_visible');
+  document.addEventListener('keyup', handleEsc);
+};
+
+const closePopupProfile = (popup) => {
+  popup.classList.remove('popup_visible');
+  document.removeEventListener('keyup', handleEsc);
+};
+
+
+const openPopupAdd = (popup) => {
+  popup.classList.add('popup_visible');
+  document.addEventListener('keyup', handleEsc);
+};
+
+const closePopupAdd = (popup) => {
+  popup.classList.remove('popup_visible');
+  document.removeEventListener('keyup', handleEsc);
+};
+
+const openPopupImg = (popup) => {
+  popup.classList.add('popup_visible');
+  document.addEventListener('keyup', handleEsc);
+};
+
+const closePopupImg = (popup) => {
+  popup.classList.remove('popup_visible');
+  document.removeEventListener('keyup', handleEsc);
+};
 
 const insertCardItem = (item) => {
   const listItem = createCard(item);
-  const cardImage = listItem.querySelector('.card__image');
-  const cardTitle = listItem.querySelector('.card__title');
-  cardImage.src = item.link;
-  cardImage.alt = 'Изображение';
-  cardTitle.textContent = item.name;
+
   cardList.prepend(listItem);
+}
+
+function disableButton(button) {
+  button.setAttribute('disabled', true);
+  button.classList.add('popup__save_disabled');
 }
 
 function createCard(item) {
@@ -82,25 +91,26 @@ function createCard(item) {
     popupImgPic.src = item.link;
     popupImgPic.alt = 'Изображение';
     popupImgTxt.textContent = item.name;
-    togglePopupVisible(popupImg);
+    openPopupImg(popupImg);
   }
 
   const cardImage = listItem.querySelector('.card__image');
+  const cardTitle = listItem.querySelector('.card__title');
+  cardImage.src = item.link;
+  cardImage.alt = 'Изображение';
+  cardTitle.textContent = item.name;
   cardImage.addEventListener('click', imgClickHandler);
   return listItem; //возвращается созданная карточка
 }
-
-reverseCard.forEach(item => {
-  insertCardItem(item);
-});
 
 
 const handleCardSubmit = (evt) => {
   evt.preventDefault();
   const item = {name: popupTitle.value, link: popupLink.value};
   insertCardItem(item);
-  togglePopupVisible(popupAdd);
+  closePopupAdd(popupAdd);
   popupFormAdd.reset();
+  disableButton(popupSaveCard);
 }
 
 
@@ -108,52 +118,50 @@ const handleProfileSubmit = evt => {
   evt.preventDefault();
   nameProfile.textContent = popupName.value;
   professionProfile.textContent = popupProfession.value;
-  togglePopupVisible(popupProfile);
+  closePopupProfile(popupProfile);
 }
 
 const handleEsc = (evt) => {
   if (evt.key === 'Escape') {
     const activePopup = document.querySelector('.popup_visible');
-    togglePopupVisible(activePopup);
+    closePopupProfile(activePopup);
   }
 }
 
 popupFormProfile.addEventListener('submit', handleProfileSubmit);
-popupFormAdd.addEventListener('submit', handleCardSubmit);
+popupFormAdd.addEventListener('submit', (evt) => {
+  handleCardSubmit(evt);
+});
 
 popupOpenProfile.addEventListener('click', function() {
   popupName.value = nameProfile.textContent;
   popupProfession.value = professionProfile.textContent;
-  togglePopupVisible(popupProfile);
-  document.addEventListener('keyup', handleEsc);
-
+  openPopupProfile(popupProfile);
 })
 
 popupOpenAdd.addEventListener('click', function() {
-  togglePopupVisible(popupAdd);
+  openPopupAdd(popupAdd);
   document.addEventListener('keyup', handleEsc);
 })
 
 popupCloseProfile.addEventListener('click', () => {
-  togglePopupVisible(popupProfile);
-  document.removeEventListener('keyup', handleEsc);
+  closePopupProfile(popupProfile);
 });
 
 popupProfile.addEventListener('click', function(evt) {
   if (evt.target.classList.contains('popup')) {
-    togglePopupVisible(popupProfile);
+    closePopupProfile(popupProfile);
   }
 });
 
 popupCloseAdd.addEventListener('click', () => {
-  togglePopupVisible(popupAdd);
-  document.removeEventListener('keyup', handleEsc);
+  closePopupAdd(popupAdd);
 });
 
 popupAdd.addEventListener('click', function(evt) {
   if (evt.target.classList.contains('popup')) {
-    togglePopupVisible(popupAdd);
+    closePopupAdd(popupAdd);
   }
 });
 
-popupCloseImg.addEventListener('click', () => togglePopupVisible(popupImg));
+popupCloseImg.addEventListener('click', () => closePopupImg(popupImg));
