@@ -38,7 +38,7 @@ const inactiveButtonClass = (inputList, buttonElement, disabledButtonClass) => {
   }
 };
 
-const setEventListeners = (formElement, inputSelector, submitButtonSelector, disabledButtonClass) => {
+const setEventListeners = (formElement, inputSelector, submitButtonSelector, disabledButtonClass, inputErrorClass) => {
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
   };
@@ -50,7 +50,7 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, dis
 
   const inputListIterator = (inputElement) => {
     const handleInput = () => {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, inputErrorClass);
       inactiveButtonClass(inputList, buttonElement, disabledButtonClass);
     };
     inputElement.addEventListener('input', handleInput);
