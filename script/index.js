@@ -1,6 +1,9 @@
+import {Card} from './Card.js';
+import {initialCards} from './initialCards.js';
+
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAdd = document.querySelector('.popup_type_add');
-const popupImg = document.querySelector('.popup_type_img');
+export const popupImg = document.querySelector('.popup_type_img');
 
 const popupOpenProfile = document.querySelector('.profile__open-btn');
 const popupOpenAdd = document.querySelector('.profile__open-add');
@@ -29,13 +32,12 @@ const cardTemplate = document.querySelector('.card__template').content.querySele
 
 
 
-
-const popupImgPic = popupImg.querySelector('.popup__img');
-const popupImgTxt = popupImg.querySelector('.popup__caption');
-
+export const popupImgPic = popupImg.querySelector('.popup__img');
+export const popupImgTxt = popupImg.querySelector('.popup__caption');
 
 
-const openPopup = (popup) => {
+
+export const openPopup = (popup) => {
   popup.classList.add('popup_visible');
   document.addEventListener('keyup', handleEsc);
 };
@@ -46,7 +48,7 @@ const closePopup = (popup) => {
 };
 
 const insertCardItem = (item) => {
-  const listItem = createCard(item);
+  const listItem = createCard(item, '.card__template');
 
   cardList.prepend(listItem);
 }
@@ -56,31 +58,43 @@ function disableButton(button) {
   button.classList.add(enableValidation.disabledButtonClass);
 }
 
-function createCard(item) {
-  const listItem = cardTemplate.cloneNode(true); //создается DOM элемент карточки
-  const cardDelete = listItem.querySelector('.card__delete'); //в карточку вставляются данные и навешиваются обработчики
-  cardDelete.addEventListener('click', () => listItem.remove());
+const createCard = (data, cardSelector) => {
+  const card = new Card(data, cardSelector);
+  const cardElement = card.createCard();
 
-  const cardLike = listItem.querySelector('.card__like-btn');
-  cardLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('card__like-btn_active');
+  return cardElement;
+}
+
+initialCards.reverse();
+initialCards.forEach(item => {
+    insertCardItem(item);
   });
 
-  const imgClickHandler = (evt) => {
-    popupImgPic.src = item.link;
-    popupImgPic.alt = 'Изображение';
-    popupImgTxt.textContent = item.name;
-    openPopup(popupImg);
-  }
+// const reverseCard = initialCards.reverse();
 
-  const cardImage = listItem.querySelector('.card__image');
-  const cardTitle = listItem.querySelector('.card__title');
-  cardImage.src = item.link;
-  cardImage.alt = 'Изображение';
-  cardTitle.textContent = item.name;
-  cardImage.addEventListener('click', imgClickHandler);
-  return listItem; //возвращается созданная карточка
-}
+// reverseCard.forEach(item => {
+//   insertCardItem(item);
+// });
+
+// function createCard(item) {
+//   const listItem = cardTemplate.cloneNode(true); //создается DOM элемент карточки
+//   const cardDelete = listItem.querySelector('.card__delete'); //в карточку вставляются данные и навешиваются обработчики
+//   cardDelete.addEventListener('click', () => listItem.remove());
+
+//   const cardLike = listItem.querySelector('.card__like-btn');
+//   cardLike.addEventListener('click', (evt) => {
+//     evt.target.classList.toggle('card__like-btn_active');
+//   });
+
+
+//   const cardImage = listItem.querySelector('.card__image');
+//   const cardTitle = listItem.querySelector('.card__title');
+//   cardImage.src = item.link;
+//   cardImage.alt = 'Изображение';
+//   cardTitle.textContent = item.name;
+//   cardImage.addEventListener('click', imgClickHandler);
+//   return listItem; //возвращается созданная карточка
+// }
 
 
 const handleCardSubmit = (evt) => {

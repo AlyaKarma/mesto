@@ -25,8 +25,4 @@ const initialCards = [
   }
 ];
 
-const reverseCard = initialCards.reverse();
-
-reverseCard.forEach(item => {
-  insertCardItem(item);
-});
+export {initialCards};
