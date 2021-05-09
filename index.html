@@ -67,7 +67,7 @@
           <span class="popup__input-error popup__input-error_name" id="sign-name-error"></span>
           <input type="text" class="popup__input popup__input_type_profession" id="sign-profession" name="profession" placeholder="Обо мне" required minlength="2" maxlength="200">
           <span class="popup__input-error popup__input-error_profession" id="sign-profession-error"></span>
-          <button class="popup__save" type="submit" id="saveInfo">Сохранить</button>
+          <button class="popup__save" type="submit" id="saveInfo" disabled>Сохранить</button>
         </form>
       </div>
     </div>
@@ -83,7 +83,7 @@
           <span class="popup__input-error popup__input-error_title" id="sign-title-error"></span>
           <input type="url" class="popup__input popup__input_type_link" id="sign-link" name="link" placeholder="Ссылка на картинку" required>
           <span class="popup__input-error popup__input-error_link" id="sign-link-error"></span>
-          <button class="popup__save popup__save_disabled" type="submit" id="saveCard" disabled>Создать</button>
+          <button class="popup__save" type="submit" id="saveCard" disabled>Создать</button>
         </form>
       </div>
     </div>
@@ -101,6 +101,5 @@
 
 
   <script type="module" src="./script/index.js"></script>
-  <script src="./script/validity.js"></script>
 </body>
 </html>

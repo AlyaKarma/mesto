@@ -8,5 +8,5 @@
   position: absolute;
   top: 63%;
   left: 8%;
-  transition: opacity, .2s;
+  transition: opacity;
 }
