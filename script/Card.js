@@ -1,11 +1,9 @@
-import {openPopup} from './index.js';
-import {popupImgPic, popupImgTxt, popupImg} from './index.js';
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -35,39 +33,22 @@ class Card {
     return this._element;
   }
 
-  _cardLike(evt) {
+  _likeCard(evt) {
     const cardLikeBtn = evt.target;
     cardLikeBtn.classList.toggle('card__like-btn_active')
   }
 
-  _cardDelete(evt) {
+  _deleteCard(evt) {
     const cardDeleteBtn = evt.target;
     cardDeleteBtn.closest('.card__item').remove();
   }
 
-  _cardOpenImage(name, link) {
-    this._cardImageData(name, link, popupImgPic, popupImgTxt);
-    openPopup(popupImg);
-  }
-
-  _cardImageData(name, link, popupImgPic, popupImgTxt) {
-    popupImgPic.src = link;
-    popupImgPic.alt = name;
-    popupImgTxt.textContent = name;
-  }
-
-
-//   const imgClickHandler = (evt) => {
-//     popupImgPic.src = item.link;
-//     popupImgPic.alt = 'Изображение';
-//     popupImgTxt.textContent = item.name;
-//     openPopup(popupImg);
-//   }
-
   _setListeners(cardDeleteBtn, cardLikeBtn, cardImage) {
-    cardDeleteBtn.addEventListener('click', (evt) => this._cardDelete(evt));
-    cardLikeBtn.addEventListener('click', (evt) => this._cardLike(evt));
-    cardImage.addEventListener('click', () => this._cardOpenImage(this._name, this._link));
+    cardDeleteBtn.addEventListener('click', (evt) => this._deleteCard(evt));
+    cardLikeBtn.addEventListener('click', (evt) => this._likeCard(evt));
+    cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 }
 

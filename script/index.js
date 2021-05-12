@@ -30,6 +30,8 @@ export const popupImgTxt = popupImg.querySelector('.popup__caption');
 
 const cardList = document.querySelector('.card__list');
 
+const popups = document.querySelectorAll('.popup');
+
 
 const parameters = {
   formSelector: '.popup__form',
@@ -47,6 +49,14 @@ const popupAddValidator = new FormValidator(parameters, popupAdd);
 popupProfileValidator.enableValidation();
 popupAddValidator.enableValidation();
 
+
+export const handleCardClick = (name, link) => {
+  popupImgPic.src = link;
+  popupImgPic.alt = name;
+  popupImgTxt.textContent = name;
+  openPopup(popupImg);
+};
+
 export const openPopup = (popup) => {
   popup.classList.add('popup_visible');
   document.addEventListener('keyup', handleEsc);
@@ -61,15 +71,15 @@ const insertCardItem = (item) => {
   const listItem = createCard(item, '.card__template');
 
   cardList.prepend(listItem);
-}
+};
 
 
 const createCard = (data, cardSelector) => {
-  const card = new Card(data, cardSelector);
+  const card = new Card(data, cardSelector, handleCardClick);
   const cardElement = card.createCard();
 
   return cardElement;
-}
+};
 
 initialCards.reverse();
 
@@ -101,6 +111,18 @@ const handleEsc = (evt) => {
   }
 }
 
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup')) {
+        closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__close')) {
+        closePopup(popup)
+      }
+  });
+});
+
 popupFormProfile.addEventListener('submit', handleProfileSubmit);
 popupFormAdd.addEventListener('submit', (evt) => {
   handleCardSubmit(evt);
@@ -115,33 +137,16 @@ popupOpenProfile.addEventListener('click', function() {
 popupOpenAdd.addEventListener('click', function() {
   openPopup(popupAdd);
   popupAddValidator.disableButtonSubmit();
-  document.addEventListener('keyup', handleEsc);
 })
 
 popupCloseProfile.addEventListener('click', () => {
   closePopup(popupProfile);
 });
 
-popupProfile.addEventListener('click', function(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popupProfile);
-  }
-});
 
 popupCloseAdd.addEventListener('click', () => {
   closePopup(popupAdd);
 });
 
-popupAdd.addEventListener('click', function(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popupAdd);
-  }
-});
-
-popupImg.addEventListener('click', function(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popupImg);
-  }
-});
 
 popupCloseImg.addEventListener('click', () => closePopup(popupImg));
