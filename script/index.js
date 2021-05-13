@@ -139,14 +139,3 @@ popupOpenAdd.addEventListener('click', function() {
   popupAddValidator.disableButtonSubmit();
 })
 
-popupCloseProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
-
-
-popupCloseAdd.addEventListener('click', () => {
-  closePopup(popupAdd);
-});
-
-
-popupCloseImg.addEventListener('click', () => closePopup(popupImg));
