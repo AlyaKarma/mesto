@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto</title>
 </head>
 <body class = "page">
   <div class="page__container">
     <header class="header section section_scale_m">
       <a class="header__link">
-        <img src="./images/log.svg" alt="Логотип" class="header__logo">
+        <img src="<%=require('./images/log.svg')%>"  alt="Логотип" class="header__logo">
       </a>
     </header>
 
     <main class="content">
       <section class="profile section section_scale_l">
-        <img src="./images/kusto.jpg" alt="Фото профиля" class="profile__photo">
+        <img src="<%=require('./images/kusto.jpg')%>" alt="Фото профиля" class="profile__photo">
         <div class="profile__info">
           <div class="profile__about">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
           </div>
           <button class="profile__edit-btn profile__open-btn" type="button">
-            <img src="./images/edit.svg" alt="Редактировать профиль" class="profile__edit">
+            <img src="<%=require('./images/edit.svg')%>" alt="Редактировать профиль" class="profile__edit">
           </button>
         </div>
         <button class="profile__add-btn profile__open-add" type="button">
-          <img src="./images/add.svg" alt="Добавить фото" class="profile__add">
+          <img src="<%=require('./images/add.svg')%>" alt="Добавить фото" class="profile__add">
         </button>
       </section>
 
@@ -38,7 +38,7 @@
           <li class="card__item">
             <img src="#" alt="Изображение" class="card__image">
             <button class="card__delete">
-              <img src="./images/delete.svg" alt="Удалить">
+              <img src="<%=require('./images/delete.svg')%>" alt="Удалить">
             </button>
             <div class="card__caption">
               <h2 class="card__title"></h2>
@@ -59,7 +59,7 @@
     <div class="popup popup_type_profile">
       <div class="popup__content">
         <button class="popup__close-btn popup__close-btn_type_profile" type="button">
-          <img src="./images/close__icon.svg" alt="Закрыть" class="popup__close">
+          <img src="<%=require('./images/close__icon.svg')%>" alt="Закрыть" class="popup__close">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_profile" name="form" novalidate>
@@ -75,7 +75,7 @@
     <div class="popup popup_type_add">
       <div class="popup__content">
         <button class="popup__close-btn popup__close-btn_type_add" type="button">
-          <img src="./images/close__icon.svg" alt="Закрыть" class="popup__close">
+          <img src="<%=require('./images/close__icon.svg')%>" alt="Закрыть" class="popup__close">
         </button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form_type_add" name="form" novalidate>

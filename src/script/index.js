@@ -1,5 +1,14 @@
+import '../pages/index.css'
 import {Card} from './Card.js';
-import {initialCards} from './initialCards.js';
+import {
+  arkhyz,
+  chelyabinsk,
+  ivanovo,
+  kamchatka,
+  kholmogorsky,
+  baikal,
+  initialCards
+} from './initialCards.js';
 import {FormValidator} from './FormValidator.js';
 
 
@@ -9,10 +18,6 @@ export const popupImg = document.querySelector('.popup_type_img');
 
 const popupOpenProfile = document.querySelector('.profile__open-btn');
 const popupOpenAdd = document.querySelector('.profile__open-add');
-
-const popupCloseProfile = document.querySelector('.popup__close-btn_type_profile');
-const popupCloseAdd = document.querySelector('.popup__close-btn_type_add')
-const popupCloseImg = document.querySelector('.popup__close-btn_type_img');
 
 
 const popupName = document.querySelector('.popup__input_type_name');
