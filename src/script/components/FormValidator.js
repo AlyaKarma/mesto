@@ -60,6 +60,12 @@ class FormValidator {
     this._buttonElement.classList.add(this._parameters.inactiveButtonClass);
   };
 
+  deleteErrors = () => {
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
+  }
+
 
   enableValidation() {
     this._setEventListeners();
