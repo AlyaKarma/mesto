@@ -1,10 +1,10 @@
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupName = document.querySelector('.popup__input_type_name');
-const popupProfession = document.querySelector('.popup__input_type_profession')
+const popupProfileForm = document.querySelector('#popupProfile');
+const popupName = popupProfileForm.querySelector('#sign-name');
+const popupProfession = popupProfileForm.querySelector('#sign-profession')
 
-const popupAdd = document.querySelector('.popup_type_add');
+const popupAddForm = document.querySelector('#popupAdd');
 
-const popupImg = document.querySelector('.popup_type_img');
+const popupImg = document.querySelector('#popupImg');
 
 const parameters = {
   formSelector: '.popup__form',
@@ -15,10 +15,10 @@ const parameters = {
 }
 
 export {
-  popupProfile,
+  popupProfileForm,
   popupName,
   popupProfession,
-  popupAdd,
+  popupAddForm,
   popupImg,
   parameters
 }

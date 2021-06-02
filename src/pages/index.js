@@ -9,14 +9,14 @@ import {
   initialCards
 } from '../script/utils/initialCards.js';
 import {
-  popupProfile,
+  popupProfileForm,
   popupName,
   popupProfession,
-  popupAdd,
+  popupAddForm,
   popupImg,
   parameters
 } from '../script/utils/const.js';
-import {FormValidator} from '../script/components/FormValidator.js';
+import FormValidator from '../script/components/FormValidator.js';
 import PopupWithForm from '../script/components/PopupWithForm.js';
 import PopupWithImage from '../script/components/PopupWithImage.js';
 import UserInfo from '../script/components/UserInfo.js';
@@ -60,19 +60,19 @@ import Card from '../script/components/Card.js';
 
 // _______________Валидация
 
-const popupProfileValidator = new FormValidator(parameters, popupProfile);
+const popupProfileValidator = new FormValidator(parameters, popupProfileForm);
 popupProfileValidator.enableValidation();
-const popupAddValidator = new FormValidator(parameters, popupAdd);
+const popupAddValidator = new FormValidator(parameters, popupAddForm);
 popupAddValidator.enableValidation();
 
 
 // _______________Модальное окно профиля
 
 const userInfoHandler = new UserInfo({nameSelector: '.profile__name', professionSelector: '.profile__profession'});
-const popupProfileHandler = new PopupWithForm(popupProfile, handleProfileSubmit);
+const popupProfileHandler = new PopupWithForm('#popupProfile', handleProfileSubmit);
 popupProfileHandler.setEventListeners();
 
-function infoProfile () {
+function infoProfile() {
   const getUserData = userInfoHandler.getUserInfo();
   popupName.value = getUserData.userName;
   popupProfession.value = getUserData.userProfession;
@@ -83,7 +83,7 @@ function handleProfileSubmit (newInfo) {
   popupProfileHandler.closePopup();
 };
 
-document.querySelector('.profile__edit-btn').addEventListener('click', function () {
+document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   popupProfileValidator.deleteErrors();
   popupProfileHandler.openPopup();
   infoProfile();
@@ -91,19 +91,19 @@ document.querySelector('.profile__edit-btn').addEventListener('click', function 
 
 //_________________Модальное окно изображений
 
-const popupImageHandler = new PopupWithImage(popupImg);
+const popupImageHandler = new PopupWithImage('#popupImg');
 export const handleCardClick = (name, link) => {
   popupImageHandler.openPopup(name, link);
-  popupImageHandler.addEventListeners();
+  popupImageHandler.setEventListeners();
 }
 
 //_________________Модальное окно добавления карточки
 
-const popupAddHandler = new PopupWithForm(popupAdd, handleAddCardSubmit);
+const popupAddHandler = new PopupWithForm('#popupAdd', handleAddCardSubmit);
 popupAddHandler.setEventListeners();
 
-function handleAddCardSubmit (item) {
-  section.addItem(item);
+function handleAddCardSubmit (items) {
+  section.addItem(items);
   popupAddHandler.closePopup();
 };
 
@@ -116,8 +116,8 @@ document.querySelector('.profile__open-add').addEventListener('click', function 
 
 //__________________Создание карточки
 
-const createNewCard = (data, cardSelector) => {
-  const card = new Card(data, cardSelector, handleCardClick);
+const createNewCard = (item, cardSelector) => {
+  const card = new Card(item, cardSelector, handleCardClick);
   const cardElement = card.createCard();
 
   return cardElement;

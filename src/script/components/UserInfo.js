@@ -10,6 +10,6 @@ export default class UserInfo {
 
   setUserInfo = (newProfile) => {
     this._name.textContent = newProfile.name;
-    this._profession.textContent = newProfile.link;
+    this._profession.textContent = newProfile.profession;
   };
 }

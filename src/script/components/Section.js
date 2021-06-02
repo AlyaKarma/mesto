@@ -11,7 +11,7 @@ export default class Section {
     });
   }
 
-  addItem() {
-    this._renderer(item, this._container);
+  addItem (items) {
+    this._renderer(items, this._container);
   };
 }
