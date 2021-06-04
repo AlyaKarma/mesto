@@ -1,11 +1,5 @@
 import './index.css';
 import {
-  lviv,
-  brussels,
-  milan,
-  vienna,
-  budapest,
-  paris,
   initialCards
 } from '../script/utils/initialCards.js';
 import {
@@ -38,7 +32,7 @@ const userInfoHandler = new UserInfo({nameSelector: '.profile__name', profession
 const popupProfileHandler = new PopupWithForm('#popupProfile', handleProfileSubmit);
 popupProfileHandler.setEventListeners();
 
-function infoProfile() {
+function SetInfoProfile() {
   const getUserData = userInfoHandler.getUserInfo();
   popupName.value = getUserData.userName;
   popupProfession.value = getUserData.userProfession;
@@ -52,15 +46,15 @@ function handleProfileSubmit (newInfo) {
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   popupProfileValidator.deleteErrors();
   popupProfileHandler.openPopup();
-  infoProfile();
+  SetInfoProfile();
 });
 
 //_________________Модальное окно изображений
 
 const popupImageHandler = new PopupWithImage('#popupImg');
+popupImageHandler.setEventListeners();
 export const handleCardClick = (name, link) => {
   popupImageHandler.openPopup(name, link);
-  popupImageHandler.setEventListeners();
 }
 
 //_________________Модальное окно добавления карточки
@@ -69,7 +63,7 @@ const popupAddHandler = new PopupWithForm('#popupAdd', handleAddCardSubmit);
 popupAddHandler.setEventListeners();
 
 function handleAddCardSubmit (items) {
-  section.addItem(items);
+  section.addItem(createNewCard(items, '.card__template'))
   popupAddHandler.closePopup();
 };
 
@@ -89,16 +83,15 @@ const createNewCard = (item, cardSelector) => {
   return cardElement;
 };
 
-const insertCardItem = (item, container) => {
-  container.prepend(createNewCard(item, '.card__template'));
-};
 
 initialCards.reverse();
 
 const section = new Section ({
   items: initialCards,
-  renderer: insertCardItem
+  renderer: (item) => {
+    section.addItem(createNewCard(item, '.card__template'))
+  }
 }, '.card__list');
 
-section.renderItem();
+section.renderItems();
 

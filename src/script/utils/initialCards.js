@@ -33,11 +33,5 @@ const initialCards = [
 ];
 
 export {
-  lviv,
-  brussels,
-  milan,
-  vienna,
-  budapest,
-  paris,
   initialCards
 };
