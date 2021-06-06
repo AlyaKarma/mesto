@@ -32,7 +32,7 @@ const userInfoHandler = new UserInfo({nameSelector: '.profile__name', profession
 const popupProfileHandler = new PopupWithForm('#popupProfile', handleProfileSubmit);
 popupProfileHandler.setEventListeners();
 
-function SetInfoProfile() {
+function setInfoProfile() {
   const getUserData = userInfoHandler.getUserInfo();
   popupName.value = getUserData.userName;
   popupProfession.value = getUserData.userProfession;
@@ -46,7 +46,7 @@ function handleProfileSubmit (newInfo) {
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   popupProfileValidator.deleteErrors();
   popupProfileHandler.openPopup();
-  SetInfoProfile();
+  setInfoProfile();
 });
 
 //_________________Модальное окно изображений
