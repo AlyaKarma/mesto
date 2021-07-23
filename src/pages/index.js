@@ -16,6 +16,7 @@ import PopupWithImage from '../script/components/PopupWithImage.js';
 import UserInfo from '../script/components/UserInfo.js';
 import Section from '../script/components/Section.js';
 import Card from '../script/components/Card.js';
+import Api from '../script/components/Api';
 
 
 // _______________Валидация
@@ -95,3 +96,13 @@ const section = new Section ({
 
 section.renderItems();
 
+
+const api = new Api ({
+  baseUrl: 'https://mesto.nomoreparties.co',
+  headers: {
+    authorization: '166d82c1-8e93-4726-8a90-1ae34485434b',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getUserData();
