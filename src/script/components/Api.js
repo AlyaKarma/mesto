@@ -89,7 +89,7 @@ export default class Api {
 
   //_________________Сменить аватарку
   changeAvatar(userAvatar) {
-    const changeAvatarPromise = fetch('https://mesto.nomoreparties.co/v1/cohort-24/users/me/avatar', {
+    const changeAvatarPromise = fetch('https://mesto.nomoreparties.co/v1/cohort-26/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify ({
