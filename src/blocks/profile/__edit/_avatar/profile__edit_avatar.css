@@ -1,0 +1,30 @@
+.profile__edit_avatar {
+  border-radius: 50%;
+  max-height: 120px;
+  max-width: 120px;
+  padding: 0;
+  border: none;
+  position: relative;
+}
+
+.profile__edit_avatar:after {
+  position: absolute;
+  content: ' ';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: url(../../../../images/editAvatar.svg) no-repeat center;
+  opacity: 0;
+  transition: opacity .2s;
+  border-radius: 50%;
+  max-height: 120px;
+  max-width: 120px;
+}
+
+.profile__edit_avatar:hover:after {
+  transition: opacity 0.5s ease;
+  opacity: 0.8;
+  background-color: black;
+}
