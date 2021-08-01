@@ -15,14 +15,21 @@
 
     <main class="content">
       <section class="profile section section_scale_l">
-        <button class="profile__edit_avatar">
+        <!-- <button class="profile__edit_avatar">
           <img src="<%=require('./images/kusto.jpg')%>" alt="Фото профиля" class="profile__photo">
-        </button>
+        </button> -->
+
 
         <div class="profile__info">
+          <div class="profile__avatar_container">
+            <div class="profile__avatar_overlay">
+              <button class="profile__avatar_edit-btn"></button>
+            </div>
+            <img src="#" alt="Фото профиля" class="profile__avatar">
+          </div>
           <div class="profile__about">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__profession">Исследователь океана</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__profession"></p>
           </div>
           <button class="profile__edit-btn profile__open-btn" type="button">
             <img src="<%=require('./images/edit.svg')%>" alt="Редактировать профиль" class="profile__edit">
@@ -67,7 +74,7 @@
         <form class="popup__form popup__form_type_profile" name="form" novalidate>
           <input type="text" class="popup__input popup__input_type_name" id="sign-name" name="name" placeholder="Имя" required minlength="2" maxlength="40">
           <span class="popup__input-error popup__input-error_name" id="sign-name-error"></span>
-          <input type="text" class="popup__input popup__input_type_profession" id="sign-profession" name="profession" placeholder="Обо мне" required minlength="2" maxlength="200">
+          <input type="text" class="popup__input popup__input_type_profession" id="sign-profession" name="about" placeholder="Обо мне" required minlength="2" maxlength="200">
           <span class="popup__input-error popup__input-error_profession" id="sign-profession-error"></span>
           <button class="popup__save" type="submit" id="saveInfo" disabled>Сохранить</button>
         </form>

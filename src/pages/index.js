@@ -1,8 +1,5 @@
 import './index.css';
 import {
-  initialCards
-} from '../script/utils/initialCards.js';
-import {
   popupProfileForm,
   popupName,
   popupProfession,
@@ -19,6 +16,7 @@ import Card from '../script/components/Card.js';
 import Api from '../script/components/Api';
 
 
+
 // _______________Валидация
 
 const popupProfileValidator = new FormValidator(parameters, popupProfileForm);
@@ -29,7 +27,7 @@ popupAddValidator.enableValidation();
 
 // _______________Модальное окно профиля
 
-const userInfoHandler = new UserInfo({nameSelector: '.profile__name', professionSelector: '.profile__profession'});
+const userInfoHandler = new UserInfo({nameSelector: '.profile__name', professionSelector: '.profile__profession', avatarSelector: '.profile__avatar'});
 const popupProfileHandler = new PopupWithForm('#popupProfile', handleProfileSubmit);
 popupProfileHandler.setEventListeners();
 
@@ -85,16 +83,22 @@ const createNewCard = (item, cardSelector) => {
 };
 
 
-initialCards.reverse();
+// initialCards.reverse();
 
-const section = new Section ({
-  items: initialCards,
-  renderer: (item) => {
-    section.addItem(createNewCard(item, '.card__template'))
-  }
-}, '.card__list');
+// const section = new Section ({
+//   items: initialCards,
+//   renderer: (item) => {
+//     section.addItem(createNewCard(item, '.card__template'))
+//   }
+// }, '.card__list');
 
-section.renderItems();
+// section.renderItems();
+
+const prependNewCard = (item, container) => {
+  container.prepend(createNewCard(item, '.card__template'))
+}
+
+const section = new Section({renderer: prependNewCard}, '.card__list');
 
 
 const api = new Api ({
@@ -103,6 +107,26 @@ const api = new Api ({
     authorization: '166d82c1-8e93-4726-8a90-1ae34485434b',
     'Content-Type': 'application/json'
   }
-});
+})
 
-api.getUserData();
+// api.getInitialCards().then((data) => {
+//   const reversedCards = data.reverse();
+//   section.renderItems(reversedCards);
+// })
+
+Promise.all([api.getUserData(), api.getInitialCards()])
+.then(([userInfo, defaultCards]) => {
+  getUserData(userInfo);
+  const reversedCards = defaultCards.reverse();
+  section.renderItems(reversedCards)
+})
+.catch(error => console.log(error));
+
+function getUserData(data) {
+  userInfoHandler.setUserInfo(data);
+  userInfoHandler.setUserAvatar(data);
+}
+
+// api.getUserData().then((data) => {
+//   console.log(data);
+// });

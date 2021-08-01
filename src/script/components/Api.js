@@ -19,10 +19,7 @@ export default class Api {
     })
     .then(res => this._checkResponse(res));
 
-    return getUserDataPromise
-    .then(data => {
-      console.log(data);
-    })
+    return getUserDataPromise;
   }
 
   //_________________Редактирование профиля
@@ -100,5 +97,4 @@ export default class Api {
 
     return changeAvatarPromise;
   }
-
 }
