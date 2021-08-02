@@ -62,8 +62,13 @@ const popupAddHandler = new PopupWithForm('#popupAdd', handleAddCardSubmit);
 popupAddHandler.setEventListeners();
 
 function handleAddCardSubmit (items) {
-  section.addItem(createNewCard(items, '.card__template'))
-  popupAddHandler.closePopup();
+  api.addNewCard(items)
+  .then((res) => {
+    section.addItem(res);
+    popupAddHandler.closePopup();
+  })
+  // section.addItem(createNewCard(items, '.card__template'))
+  // popupAddHandler.closePopup();
 };
 
 document.querySelector('.profile__open-add').addEventListener('click', function () {
@@ -83,16 +88,6 @@ const createNewCard = (item, cardSelector) => {
 };
 
 
-// initialCards.reverse();
-
-// const section = new Section ({
-//   items: initialCards,
-//   renderer: (item) => {
-//     section.addItem(createNewCard(item, '.card__template'))
-//   }
-// }, '.card__list');
-
-// section.renderItems();
 
 const prependNewCard = (item, container) => {
   container.prepend(createNewCard(item, '.card__template'))
@@ -109,10 +104,6 @@ const api = new Api ({
   }
 })
 
-// api.getInitialCards().then((data) => {
-//   const reversedCards = data.reverse();
-//   section.renderItems(reversedCards);
-// })
 
 Promise.all([api.getUserData(), api.getInitialCards()])
 .then(([userInfo, defaultCards]) => {
@@ -127,6 +118,4 @@ function getUserData(data) {
   userInfoHandler.setUserAvatar(data);
 }
 
-// api.getUserData().then((data) => {
-//   console.log(data);
-// });
+
