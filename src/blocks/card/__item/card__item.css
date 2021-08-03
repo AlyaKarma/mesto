@@ -1,9 +1,9 @@
 .card__item {
   max-width: 282px;
   height: 361px;
-  background-color: rgb(255, 255, 255);
-  box-sizing: border-box;
-  border-radius: 10px;
   margin: 0;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   position: relative;
+  box-sizing: border-box;
 }

@@ -1,10 +1,10 @@
-.elements__like-counter {
+.card__like_counter {
   margin: 3px auto 0;
   min-width: 10px;
+  line-height: 16px;
   height: 13px;
   text-align: center;
-  font-style: normal;
   font-weight: normal;
   font-size: 13px;
-  line-height: 16px;
+  font-style: normal;
 }
