@@ -81,10 +81,18 @@ document.querySelector('.profile__open-add').addEventListener('click', function 
 //__________________Создание карточки
 
 const createNewCard = (item, cardSelector) => {
-  const card = new Card(item, cardSelector, handleCardClick);
-  const cardElement = card.createCard();
+  const card = new Card(item, cardSelector, handleCardClick,
+    () => {
+       const cardElement = card;
+      handleSendLike(item, cardElement);
+    },
+    () => {
+      const cardElement = card;
+      handleDeleteLike(item, cardElement)
+    });
+  const cardElem = card.createCard();
 
-  return cardElement;
+  return cardElem;
 };
 
 
@@ -118,4 +126,15 @@ function getUserData(data) {
   userInfoHandler.setUserAvatar(data);
 }
 
-
+//колбэк для установки лайка
+const handleSendLike = (data, card) => {
+  api.likesCard('PUT', data._id)
+  .then((res) => {card.countLikes(res.likes.length)})
+  .catch(error => console.log(error))
+}
+//колбэк для удаления лайка
+const handleDeleteLike = (data, card) => {
+  api.likesCard('DELETE', data._id)
+  .then((res) => {card.countLikes(res.likes.length)})
+  .catch(error => console.log(error))
+}
