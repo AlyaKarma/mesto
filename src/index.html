@@ -15,11 +15,6 @@
 
     <main class="content">
       <section class="profile section section_scale_l">
-        <!-- <button class="profile__edit_avatar">
-          <img src="<%=require('./images/kusto.jpg')%>" alt="Фото профиля" class="profile__photo">
-        </button> -->
-
-
         <div class="profile__info">
           <div class="profile__avatar_container">
             <div class="profile__avatar_overlay">
@@ -46,7 +41,7 @@
         <template class="card__template">
           <li class="card__item">
             <img src="#" alt="Изображение" class="card__image">
-            <button class="card__delete">
+            <button class="card__delete card__delete_hidden">
               <img src="<%=require('./images/delete.svg')%>" alt="Удалить">
             </button>
             <div class="card__caption">
@@ -123,14 +118,14 @@
       </div>
     </div>
 
-    <div class="popup popup_type_avatar" id="popupAddAvatar">
+    <div class="popup popup_type_avatar popup_type_add" id="popupAddAvatar">
       <div class="popup__content">
         <button class="popup__close-btn popup__close-btn_type_add" type="button">
           <img src="<%=require('./images/close__icon.svg')%>" alt="Закрыть" class="popup__close">
         </button>
         <h2 class="popup__title">Обновить аватар</h2>
         <form class="popup__form popup__form_type_add" name="form" novalidate>
-          <input type="url" class="popup__input popup__input_type_link" id="sign-link" name="link" placeholder="Ссылка на новый аватар" required>
+          <input type="url" class="popup__input popup__avatar_link" id="sign-link" name="link" placeholder="Ссылка на новый аватар" required>
           <span class="popup__input-error popup__input-error_link" id="sign-link-error"></span>
           <button class="popup__save" type="submit" id="saveCard" disabled>Сохранить</button>
         </form>

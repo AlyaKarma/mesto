@@ -1,7 +1,7 @@
 .card__item {
   max-width: 282px;
   height: 361px;
-  margin: 0;
+  margin: auto;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   position: relative;

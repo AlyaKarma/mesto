@@ -1,6 +1,5 @@
 .profile__about {
   box-sizing: border-box;
-  max-width: 336px;
   display: flex;
   flex-direction: column;
   margin-right: 18px;

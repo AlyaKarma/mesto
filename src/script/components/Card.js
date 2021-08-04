@@ -1,15 +1,16 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick, handleSendLike, handleDeleteLike) {
+  constructor(data, cardSelector, handleCardClick, handleSendLike, handleDeleteLike, openPopupConfirm) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._id = data._id;
     this._owner = data.owner._id;
-    this._actualUserId = '453525cde60476829f73e874';
+    this._actualUserId = 'b13e5b9ee640ea184df49200';
     this._handleSendLike = handleSendLike;
     this._handleDeleteLike = handleDeleteLike;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._openPopupConfirm = openPopupConfirm;
     this.element = this._getTemplate();
     this._newCardTitle = this.element.querySelector('.card__title')
     this._newCardImage = this.element.querySelector('.card__image');
@@ -33,8 +34,8 @@ export default class Card {
     this._newCardImage.src = this._link;
     this._newCardImage.alt = this._name;
     this._checkLikes();
-
-    this._setListeners(this._newCardDelete, this._newCardLike, this._newCardImage);
+    this._checkAuthor();
+    this._setListeners();
 
     return this.element;
   }
@@ -68,17 +69,22 @@ export default class Card {
     this._newCardLikesCounter.textContent = count;
   }
 
-  _deleteCard (evt) {
-    const _cardDeleteBtnTarget = evt.target;
-    _cardDeleteBtnTarget.closest('.card__item').remove();
+  _checkAuthor() {
+    if (this._actualUserId === this._owner) {
+      this._newCardDelete.classList.remove('card__delete_hidden');
+    }
   }
 
-  _setListeners = (deleteBtn, likeBtn, cardImage) => {
-    deleteBtn.addEventListener('click', (evt) => this._deleteCard(evt));
-    likeBtn.addEventListener('click', (evt) => this._likeCard(evt));
-    cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
+  deleteCard() {
+    this.element.remove();
+  }
+
+  _setListeners = () => {
+    this._newCardDelete.addEventListener('click', () => this._openPopupConfirm(this._id));
+    this._newCardLike.addEventListener('click', (evt) => {
+      this._likeCard(evt);
     });
+    this._newCardImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 }
 

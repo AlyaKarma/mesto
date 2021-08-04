@@ -6,6 +6,9 @@ const popupAddForm = document.querySelector('#popupAdd');
 
 const popupImg = document.querySelector('#popupImg');
 
+const popupAvatar = document.querySelector('#popupAddAvatar');
+const avatar = document.querySelector('.profile__avatar');
+
 const parameters = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -20,6 +23,8 @@ export {
   popupProfession,
   popupAddForm,
   popupImg,
-  parameters
+  parameters,
+  popupAvatar,
+  avatar
 }
 
