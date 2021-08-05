@@ -30,6 +30,21 @@ const popupAvatarValidator = new FormValidator(parameters, popupAvatar);
 popupAvatarValidator.enableValidation();
 
 
+// _______________Изменение надписи на кнопках
+
+const toggleButtonText = (popupHandler, isTrue) => {
+  if (!isTrue)
+  {
+    popupHandler.changeButtonText('Сохранение...');
+  } else {
+    if (popupHandler === popupAddHandler)
+    {
+      popupHandler.changeButtonText('Создать');
+    } else {
+      popupHandler.changeButtonText('Сохранить');
+    }
+  }
+}
 
 // _______________Модальное окно профиля
 
@@ -44,12 +59,16 @@ function setInfoProfile() {
 };
 
 function handleProfileSubmit (newInfo) {
+  toggleButtonText(popupProfileHandler, false);
   api.updateUserData(newInfo)
   .then(() => {
     userInfoHandler.setUserInfo(newInfo);
     popupProfileHandler.closePopup();
   })
   .catch(error => console.log(error))
+  .finally(() => {
+    toggleButtonText(popupProfileHandler, true);
+  });
 };
 
 
@@ -59,19 +78,23 @@ document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   setInfoProfile();
 });
 
+
 // _______________Модальное окно для смены аватара
 
-//создание класса (селектор попапа, колбэк отправки формы)
 const popupAvatarHandler = new PopupWithForm('#popupAddAvatar', submitFormHandlerAvatar);
 popupAvatarHandler.setEventListeners();
 //отправка формы
 function submitFormHandlerAvatar() {
+  toggleButtonText(popupAvatarHandler, false);
   api.changeAvatar(document.querySelector('.popup__avatar_link').value)
   .then((res => {
     avatar.src = res.avatar;
     popupAvatarHandler.closePopup();
   }))
   .catch(error => console.log(error))
+  .finally(() => {
+    toggleButtonText(popupAvatarHandler, true);
+  });
 }
 //выбор элементов для открытия модалки с аватаром
 const avatarPopupElements = (evt) => {
@@ -99,11 +122,16 @@ const popupAddHandler = new PopupWithForm('#popupAdd', handleAddCardSubmit);
 popupAddHandler.setEventListeners();
 
 function handleAddCardSubmit (items) {
+  toggleButtonText(popupAddHandler, false);
   api.addNewCard(items)
   .then((res) => {
     section.addItem(res);
     popupAddHandler.closePopup();
   })
+  .catch(error => console.log(error))
+  .finally(() => {
+    toggleButtonText(popupAddHandler, true);
+  });
 };
 
 document.querySelector('.profile__open-add').addEventListener('click', function () {
@@ -112,8 +140,8 @@ document.querySelector('.profile__open-add').addEventListener('click', function 
   popupAddHandler.openPopup();
 });
 
-// ---------модальное окно для удаления карточек---------
-//создание класса (селектор попапа, колбэк отправки формы)
+//__________________Модальное окно для удаления карточек
+
 const popupConfirmHandler = new PopupWithConfirm('#popupConfirm', submitConfirmFormHandler);
 popupConfirmHandler.setEventListeners();
 //отправка формы
@@ -153,6 +181,7 @@ const prependNewCard = (item, container) => {
 
 const section = new Section({renderer: prependNewCard}, '.card__list');
 
+
 //__________________Работа с API
 
 const api = new Api ({
@@ -172,6 +201,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
 })
 .catch(error => console.log(error));
 
+//получение данных о пользователе
 function getUserData(data) {
   userInfoHandler.setUserInfo(data);
   userInfoHandler.setUserAvatar(data);
