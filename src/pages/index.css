@@ -13,9 +13,9 @@
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile/__avatar/profile__avatar-container.css);
-@import url(../blocks/profile/__avatar/profile__avatar-edit-btn.css);
-@import url(../blocks/profile/__avatar/profile__avatar-overlay.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit-btn.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
 @import url(../blocks/profile/__open-add/profile__open-add.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__edit/_avatar/profile__edit_avatar.css);
@@ -72,4 +72,4 @@
 @import url(../blocks/popup/__input-error/_profession/popup__input-error_profession.css);
 @import url(../blocks/popup/__input-error/_title/popup__input-error_title.css);
 @import url(../blocks/popup/__input-error/_link/popup__input-error_link.css);
-@import url(../blocks/popup/__input-error/_link/popup__input-error_link-avatar.css);
+@import url(../blocks/popup/__input-error/_link-avatar/popup__input-error_link-avatar.css);
