@@ -86,7 +86,7 @@ popupAvatarHandler.setEventListeners();
 //отправка формы
 function submitFormHandlerAvatar() {
   toggleButtonText(popupAvatarHandler, false);
-  api.changeAvatar(document.querySelector('.popup__avatar_link').value)
+  api.changeAvatar(document.querySelector('.popup__input_avatar_link').value)
   .then((res => {
     avatar.src = res.avatar;
     popupAvatarHandler.closePopup();
@@ -98,7 +98,7 @@ function submitFormHandlerAvatar() {
 }
 //выбор элементов для открытия модалки с аватаром
 const avatarPopupElements = (evt) => {
-  if (evt.target.classList.contains('profile__avatar_edit-btn') || evt.target.classList.contains('profile__avatar_overlay'))
+  if (evt.target.classList.contains('profile__avatar-edit-btn') || evt.target.classList.contains('profile__avatar-overlay'))
   {
     popupAvatarValidator.deleteErrors();
     popupAvatarValidator.disableButtonSubmit();
@@ -106,7 +106,7 @@ const avatarPopupElements = (evt) => {
   }
 }
 //слушатели открытия модалки по кнопке
-document.querySelector('.profile__avatar_container').addEventListener('mousedown', avatarPopupElements);
+document.querySelector('.profile__avatar-container').addEventListener('mousedown', avatarPopupElements);
 
 //_________________Модальное окно изображений
 
