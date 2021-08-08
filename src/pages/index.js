@@ -18,7 +18,7 @@ import Card from '../script/components/Card.js';
 import Api from '../script/components/Api';
 
 let cardElement = null;
-
+let userId = null;
 
 // _______________Валидация
 
@@ -170,7 +170,7 @@ const createNewCard = (item, cardSelector) => {
       cardElement = card;
       popupConfirmHandler.openPopup(card.getId());
     });
-  const cardElem = card.createCard();
+  const cardElem = card.createCard(userId);
 
   return cardElem;
 };
@@ -197,6 +197,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
 .then(([userInfo, defaultCards]) => {
   getUserData(userInfo);
   const reversedCards = defaultCards.reverse();
+  userId = userInfo._id;
   section.renderItems(reversedCards)
 })
 .catch(error => console.log(error));

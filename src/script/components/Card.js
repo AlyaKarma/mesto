@@ -5,7 +5,6 @@ export default class Card {
     this._likes = data.likes;
     this._id = data._id;
     this._owner = data.owner._id;
-    this._actualUserId = 'b13e5b9ee640ea184df49200';
     this._handleSendLike = handleSendLike;
     this._handleDeleteLike = handleDeleteLike;
     this._cardSelector = cardSelector;
@@ -29,12 +28,12 @@ export default class Card {
     return _cardElement;
   }
 
-  createCard() {
+  createCard(userId) {
     this._newCardTitle.textContent = this._name;
     this._newCardImage.src = this._link;
     this._newCardImage.alt = this._name;
-    this._checkLikes();
-    this._checkAuthor();
+    this._checkLikes(userId);
+    this._checkAuthor(userId);
     this._setListeners();
 
     return this.element;
@@ -56,9 +55,9 @@ export default class Card {
     }
   }
 
-  _checkLikes() {
+  _checkLikes(userId) {
     this._likes.forEach(like => {
-      if (like._id === this._actualUserId) {
+      if (like._id === userId) {
         this._newCardLike.classList.add('card__like-btn_active');
       }
     });
@@ -69,8 +68,8 @@ export default class Card {
     this._newCardLikesCounter.textContent = count;
   }
 
-  _checkAuthor() {
-    if (this._actualUserId === this._owner) {
+  _checkAuthor(userId) {
+    if (userId === this._owner) {
       this._newCardDelete.classList.remove('card__delete_hidden');
     }
   }
